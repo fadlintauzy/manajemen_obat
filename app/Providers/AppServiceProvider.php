@@ -20,7 +20,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        
-        Schema::defaultStringLength(191); 
+        Schema::defaultStringLength(191);
+
+        \Illuminate\Support\Facades\View::composer('layouts.app', function ($view) {
+            $service = new \App\Services\NotificationService();
+            $view->with('notifications', $service->getNotifications());
+            $view->with('notificationCount', $service->getCount());
+        });
     }
 }

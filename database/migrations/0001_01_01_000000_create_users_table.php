@@ -14,20 +14,14 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
+            $table->string('username', 50)->unique();
             $table->string('password');
-            $table->string('email')->unique()->nullable();
-            $table->string('nama_lengkap')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
             $table->timestamps();
         });
 
         DB::table('users')->insert([
             'username' => 'admin',
-            'password' => 'admin123',
-            'email' => 'admin@example.com',
-            'nama_lengkap' => 'Administrator',
+            'password' => 'admin123', // Will be hashed by mutator or we should hash it here if no mutator
             'created_at' => now(),
             'updated_at' => now(),
         ]);
