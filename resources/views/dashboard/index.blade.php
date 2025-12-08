@@ -77,9 +77,53 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- Left Column: Peringatan & Activity -->
         <div class="lg:col-span-2 space-y-8">
+            <!-- Peringatan Kedaluwarsa Section -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-bold text-gray-800">Peringatan Kedaluwarsa</h3>
+                    <a href="{{ route('alerts.index') }}" class="text-sm text-cyan-600 hover:text-cyan-700 font-medium">Lihat Semua</a>
+                </div>
 
-
-            <!-- Activity Log Section -->
+                <div class="space-y-3">
+                    @forelse($peringatan_list->take(3) as $alert)
+                    <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between group hover:border-red-100 transition-colors">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full {{ $alert['status'] == 'expired' ? 'bg-red-100 text-red-600' : 'bg-orange-100 text-orange-600' }} flex items-center justify-center flex-shrink-0">
+                                @if($alert['status'] == 'expired')
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                @else
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                    </svg>
+                                @endif
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">{{ $alert['name'] }}</h4>
+                                <p class="text-sm text-gray-500">Batch: {{ $alert['batch'] }} • Rak {{ $alert['location'] }}</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            @if($alert['status'] == 'expired')
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-800">
+                                    Expired
+                                </span>
+                            @else
+                                <span class="text-sm font-bold text-orange-600">
+                                    {{ $alert['days_left'] }} hari
+                                </span>
+                            @endif
+                            <p class="text-xs text-gray-400 mt-1">{{ $alert['quantity'] }} unit</p>
+                        </div>
+                    </div>
+                    @empty
+                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-center">
+                        <p class="text-gray-500 text-sm">Tidak ada peringatan kedaluwarsa saat ini.</p>
+                    </div>
+                    @endforelse
+                </div>
+            </div>
             <div class="space-y-4">
                 <div class="flex items-center justify-between">
                     <h3 class="text-lg font-bold text-gray-800">Aktivitas Terbaru</h3>

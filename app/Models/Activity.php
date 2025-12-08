@@ -11,6 +11,11 @@ class Activity extends Model
 
     public function batch()
     {
-        return $this->belongsTo(Batch::class, 'id_batch');
+        return $this->belongsTo(Batch::class, 'id_batch')->withTrashed();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -41,50 +41,50 @@
 
             <!-- Navigation -->
             <nav class="flex-1 py-6 px-3 space-y-1 overflow-y-auto">
-                <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-cyan-600 text-white group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('dashboard') ? 'bg-cyan-600 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }} transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 {{ request()->routeIs('dashboard') ? 'text-white' : 'group-hover:text-cyan-400' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                     </svg>
                     <span class="font-medium">Dashboard</span>
                 </a>
 
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a href="{{ route('inventory.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('inventory.*') ? 'bg-cyan-600 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }} transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 {{ request()->routeIs('inventory.*') ? 'text-white' : 'group-hover:text-cyan-400' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                     </svg>
                     <span class="font-medium">Stok Obat</span>
                 </a>
 
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a href="{{ route('transaction.incoming.create') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('transaction.incoming.*') ? 'bg-cyan-600 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }} transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 {{ request()->routeIs('transaction.incoming.*') ? 'text-white' : 'group-hover:text-cyan-400' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                     </svg>
                     <span class="font-medium">Obat Masuk</span>
                 </a>
 
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a href="{{ route('transaction.outgoing.create') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('transaction.outgoing.*') ? 'bg-cyan-600 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }} transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 {{ request()->routeIs('transaction.outgoing.*') ? 'text-white' : 'group-hover:text-cyan-400' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                     </svg>
                     <span class="font-medium">Obat Keluar</span>
                 </a>
 
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a href="{{ route('alerts.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('alerts.*') ? 'bg-cyan-600 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }} transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 {{ request()->routeIs('alerts.*') ? 'text-white' : 'group-hover:text-cyan-400' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                     </svg>
                     <span class="font-medium">Peringatan</span>
                 </a>
 
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a href="{{ route('reports.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('reports.*') ? 'bg-cyan-600 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }} transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 {{ request()->routeIs('reports.*') ? 'text-white' : 'group-hover:text-cyan-400' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                     <span class="font-medium">Laporan</span>
                 </a>
 
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition-colors group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a href="{{ route('medicines.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('medicines.*') ? 'bg-cyan-600 text-white' : 'text-gray-400 hover:bg-gray-800 hover:text-white' }} transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 {{ request()->routeIs('medicines.*') ? 'text-white' : 'group-hover:text-cyan-400' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                     </svg>
                     <span class="font-medium">Master Obat</span>
@@ -142,7 +142,29 @@
                                                 </div>
                                                 <div>
                                                     <p class="text-xs text-gray-700 font-medium leading-snug">{{ $notif['message'] }}</p>
-                                                    <p class="text-[10px] text-gray-400 mt-1">{{ \Carbon\Carbon::parse($notif['date'])->diffForHumans() }}</p>
+                                                    @php
+                                                        $notifDate = \Carbon\Carbon::parse($notif['date']);
+                                                        $isExpired = $notif['type'] == 'expired';
+                                                        $isLowStock = $notif['type'] == 'low_stock';
+                                                        
+                                                        // For expired, compare start of days to get full calendar days
+                                                        if ($isExpired) {
+                                                            $daysDiff = (int) now()->startOfDay()->diffInDays($notifDate->startOfDay(), false);
+                                                        } else {
+                                                            // For warning, keep existing logic (end of day vs now) or align to calendar days?
+                                                            // Let's align to calendar days for consistency "X hari lagi"
+                                                            $daysDiff = (int) now()->startOfDay()->diffInDays($notifDate->startOfDay(), false);
+                                                        }
+                                                    @endphp
+                                                    @if(!$isLowStock)
+                                                        <p class="text-[10px] text-gray-400 mt-1">
+                                                            @if($isExpired)
+                                                                {{ abs($daysDiff) }} hari yang lalu
+                                                            @else
+                                                                {{ $daysDiff }} hari lagi
+                                                            @endif
+                                                        </p>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -191,7 +213,35 @@
     </div>
     
     @stack('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        // Global SweetAlert2 Toast
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
+
+        @if(session('success'))
+            Toast.fire({
+                icon: 'success',
+                title: "{{ session('success') }}"
+            });
+        @endif
+
+        @if(session('error'))
+            Toast.fire({
+                icon: 'error',
+                title: "{{ session('error') }}"
+            });
+        @endif
+
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebarOverlay');

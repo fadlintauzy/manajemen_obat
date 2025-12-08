@@ -13,7 +13,7 @@ class NotificationService
 
         // 1. Expired Batches
         $expired = Batch::with('obat')
-            ->where('tgl_kadaluarsa', '<=', now())
+            ->whereDate('tgl_kadaluarsa', '<', now()->startOfDay())
             ->get();
 
         foreach ($expired as $batch) {
@@ -25,17 +25,19 @@ class NotificationService
             ];
         }
 
-        // 2. Expiring Soon (Next 3 months)
+        // 2. Expiring Soon (Next 30 days)
         $expiringSoon = Batch::with('obat')
-            ->where('tgl_kadaluarsa', '>', now())
-            ->where('tgl_kadaluarsa', '<=', now()->addMonths(3))
+            ->whereDate('tgl_kadaluarsa', '>=', now()->startOfDay())
+            ->whereDate('tgl_kadaluarsa', '<=', now()->addDays(30)->endOfDay())
             ->get();
 
         foreach ($expiringSoon as $batch) {
-            $daysLeft = now()->diffInDays($batch->tgl_kadaluarsa);
+            $expiryDate = \Carbon\Carbon::parse($batch->tgl_kadaluarsa)->endOfDay();
+            $daysLeft = (int) now()->diffInDays($expiryDate, false);
+            
             $notifications[] = [
                 'type' => 'warning',
-                'message' => "Batch {$batch->no_batches} ({$batch->obat->nama_obat}) akan kadaluwarsa dalam {$daysLeft} hari.",
+                'message' => "Batch {$batch->no_batches} ({$batch->obat->nama_obat}) akan kadaluwarsa {$daysLeft} hari lagi.",
                 'date' => $batch->tgl_kadaluarsa,
                 'color' => 'yellow'
             ];
@@ -61,9 +63,9 @@ class NotificationService
 
     public function getCount()
     {
-        $expired = Batch::where('tgl_kadaluarsa', '<=', now())->count();
-        $expiringSoon = Batch::where('tgl_kadaluarsa', '>', now())
-            ->where('tgl_kadaluarsa', '<=', now()->addMonths(3))
+        $expired = Batch::whereDate('tgl_kadaluarsa', '<', now()->startOfDay())->count();
+        $expiringSoon = Batch::whereDate('tgl_kadaluarsa', '>=', now()->startOfDay())
+            ->whereDate('tgl_kadaluarsa', '<=', now()->addDays(30)->endOfDay())
             ->count();
         $lowStock = Batch::where('stok', '<', 100)->count();
 

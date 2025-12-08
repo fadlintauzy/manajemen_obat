@@ -12,12 +12,12 @@ class DashboardController extends Controller
         $total_stok = \App\Models\Batch::sum('stok');
 
         // 2. Stock Categories (By Quantity)
-        // Expired Stock
-        $stok_expired = \App\Models\Batch::where('tgl_kadaluarsa', '<=', now())->sum('stok');
+        // Expired Stock (Expired before today's end)
+        $stok_expired = \App\Models\Batch::whereDate('tgl_kadaluarsa', '<', now()->startOfDay())->sum('stok');
         
-        // Warning Stock (Expiring in 3 months)
-        $stok_warning = \App\Models\Batch::where('tgl_kadaluarsa', '>', now())
-            ->where('tgl_kadaluarsa', '<=', now()->addMonths(3))
+        // Warning Stock (Expiring in 30 days, including today)
+        $stok_warning = \App\Models\Batch::whereDate('tgl_kadaluarsa', '>=', now()->startOfDay())
+            ->whereDate('tgl_kadaluarsa', '<=', now()->addDays(30)->endOfDay())
             ->sum('stok');
 
         // Low Stock (Not expired, not warning, but low quantity) - This is a bit tricky as it overlaps.
@@ -32,26 +32,28 @@ class DashboardController extends Controller
         // Let's keep cards as "Batch Counts" for "Segera Expired" and "Kedaluwarsa" as that makes more sense for "items to action", 
         // BUT the chart should be Quantity.
         
-        $count_segera_expired = \App\Models\Batch::where('tgl_kadaluarsa', '>', now())
-            ->where('tgl_kadaluarsa', '<=', now()->addMonths(3))
+        $count_segera_expired = \App\Models\Batch::whereDate('tgl_kadaluarsa', '>=', now()->startOfDay())
+            ->whereDate('tgl_kadaluarsa', '<=', now()->addDays(30)->endOfDay())
             ->count();
 
-        $count_kedaluwarsa = \App\Models\Batch::where('tgl_kadaluarsa', '<=', now())->count();
+        $count_kedaluwarsa = \App\Models\Batch::whereDate('tgl_kadaluarsa', '<', now()->startOfDay())->count();
         
         $count_stok_rendah = \App\Models\Batch::where('stok', '<', 100)->count();
 
         // 5. Peringatan List (Expired or Expiring Soon)
         // Ensure unique batches. The query looks fine, but let's be explicit.
         $peringatan_list = \App\Models\Batch::with('obat')
-            ->where('tgl_kadaluarsa', '<=', now()->addMonths(3))
+            ->whereDate('tgl_kadaluarsa', '<=', now()->addDays(30)->endOfDay())
             ->orderBy('tgl_kadaluarsa', 'asc')
             ->get()
             ->map(function ($batch) {
-                $days_left = now()->diffInDays($batch->tgl_kadaluarsa, false);
+                $expiryDate = \Carbon\Carbon::parse($batch->tgl_kadaluarsa)->endOfDay();
+                $days_left = (int) now()->diffInDays($expiryDate, false);
+                
                 $status = 'safe';
-                if ($days_left < 0) {
+                if ($expiryDate->isPast()) {
                     $status = 'expired';
-                } elseif ($days_left <= 90) {
+                } elseif ($days_left <= 30) {
                     $status = 'warning';
                 }
 
@@ -86,9 +88,13 @@ class DashboardController extends Controller
                     $color = 'text-orange-500 bg-orange-100';
                 }
 
+                $batch = $act->batch;
+                // Since we use withTrashed(), batch should be available unless permanently deleted
+                $obat = $batch ? $batch->obat : null;
+
                 return [
-                    'obat' => $act->batch->obat->nama_obat . ' ' . $act->batch->obat->dosis,
-                    'batch' => $act->batch->no_batches,
+                    'obat' => $obat ? ($obat->nama_obat . ' ' . $obat->dosis) : 'Data Obat Tidak Ditemukan',
+                    'batch' => $batch ? $batch->no_batches : 'Batch Tidak Ditemukan',
                     'type' => ucfirst($act->jenis_aktivitas),
                     'amount' => $act->jumlah,
                     'date' => \Carbon\Carbon::parse($act->created_at)->format('d M'),

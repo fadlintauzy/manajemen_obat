@@ -3,11 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Batch extends Model
 {
+    use SoftDeletes;
+
     protected $primaryKey = 'id_batch';
     protected $guarded = [];
+
+    protected $casts = [
+        'is_valid' => 'boolean',
+    ];
 
     public function obat()
     {
