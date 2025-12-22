@@ -116,12 +116,11 @@ Akses aplikasi melalui browser di http://localhost:8000.
 🧰 Useful Commands
 Berikut adalah perintah-perintah yang sering digunakan dalam pengembangan:
 
-php artisan migrate:fresh --seed – Reset database total dan isi ulang dengan data dummy.
+`php artisan migrate:fresh --seed – Reset` database total dan isi ulang dengan data dummy.
 
-php artisan make:model NamaModel -mcr – Membuat Model, Migration, dan Controller sekaligus.
 
-npm run build – Compile aset untuk mode produksi (minified CSS/JS).
+`npm run build` – Compile aset untuk mode produksi (minified CSS/JS).
 
-php artisan test – Menjalankan suite pengujian (Unit & Feature tests).
+`php artisan test` – Menjalankan suite pengujian (Unit & Feature tests).
 
-php artisan optimize:clear – Membersihkan semua cache framework.
+`php artisan optimize:clear` – Membersihkan semua cache framework.
