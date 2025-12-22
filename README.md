@@ -60,23 +60,24 @@ MySQL atau database kompatibel lainnya.
 1. Install Dependencies
 Clone repositori dan install dependensi backend serta frontend.
 
-Bash
 
+```text
 # Install Backend Dependencies
 composer install
 
+
 # Install Frontend Dependencies
 npm install
+```
 2. Configure Environment
 Salin file contoh konfigurasi dan sesuaikan dengan credential database lokal kamu.
 
-Bash
-
+```text
 cp .env.example .env
+```
 Buka file .env dan atur konfigurasi database:
 
-Ini, TOML
-
+```text
 APP_NAME=PharmStock
 APP_ENV=local
 APP_KEY=
@@ -89,26 +90,27 @@ DB_PORT=3306
 DB_DATABASE=manajemen_obat
 DB_USERNAME=root
 DB_PASSWORD=
+```
 3. Generate Key & Setup Database
 Generate application key dan jalankan migrasi database (serta seeder jika tersedia).
 
-Bash
-
+```text
 # Generate App Key
 php artisan key:generate
 
 # Run Migrations & Seeders
 php artisan migrate --seed
+```
 4. Run the Application
 Jalankan server pengembangan Laravel dan Vite secara bersamaan (kamu mungkin perlu dua terminal terpisah).
 
-Bash
-
+```text
 # Terminal 1: Menjalankan Laravel Server
 php artisan serve
 
 # Terminal 2: Menjalankan Vite (Hot Module Replacement)
 npm run dev
+```
 Akses aplikasi melalui browser di http://localhost:8000.
 
 🧰 Useful Commands
