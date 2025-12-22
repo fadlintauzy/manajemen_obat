@@ -43,7 +43,7 @@ Struktur direktori mengikuti standar modern Laravel untuk kemudahan navigasi dan
 ├── tests/                  # Feature & Unit tests
 ├── vite.config.js          # Vite configuration
 └── ngawi.json              # Custom project configuration
-
+```
 
 🚀 Getting Started
 Ikuti langkah-langkah berikut untuk menjalankan proyek di lingkungan lokal (Local Development).
