@@ -42,7 +42,6 @@ Struktur direktori mengikuti standar modern Laravel untuk kemudahan navigasi dan
 ├── storage/                # Logs, compiled templates, uploads
 ├── tests/                  # Feature & Unit tests
 ├── vite.config.js          # Vite configuration
-└── ngawi.json              # Custom project configuration
 ```
 
 🚀 Getting Started
