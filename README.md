@@ -1,59 +1,125 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 💊 PharmStock (Manajemen Obat)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel)
+![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)
+![License](https://img.shields.io/github/license/fadlintauzy/manajemen_obat?style=for-the-badge)
 
-## About Laravel
+**PharmStock** adalah solusi manajemen inventaris farmasi modern yang dirancang untuk efisiensi tinggi. Dibangun di atas fondasi **Laravel** yang kokoh, aplikasi ini menghadirkan sistem pelacakan stok yang presisi dengan metode **FEFO (First Expired, First Out)**, memastikan keamanan pasien dan optimalisasi aset obat.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Ditenagai oleh arsitektur Monolitik yang terpadu, PharmStock menggabungkan performa backend PHP dengan antarmuka responsif berbasis Blade dan Tailwind CSS.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Highlights
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* **Core Engine Terbaru:** Ditenagai oleh **Laravel** (Bleeding Edge) dan **PHP 8.2+**, menjamin performa, keamanan, dan *maintainability* jangka panjang.
+* **Smart Inventory (FEFO):** Algoritma cerdas yang memprioritaskan distribusi obat berdasarkan tanggal kedaluwarsa terdekat untuk meminimalisir limbah medis.
+* **Modern Frontend Tooling:** Asset bundling super cepat menggunakan **Vite** dan styling modern dengan **Tailwind CSS**.
+* **Secure Authentication:** Sistem otentikasi dan manajemen sesi yang aman untuk apoteker dan administrator.
+* **Responsive Dashboard:** Antarmuka intuitif yang dibangun dengan komponen Blade yang *reusable* dan desain adaptif untuk berbagai perangkat.
 
-## Learning Laravel
+## 🛠️ Tech Stack
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+* **Backend:** Laravel Framework, PHP, MySQL/MariaDB.
+* **Frontend:** Blade Templates, Tailwind CSS, Alpine.js, Vite.
+* **Tooling & DX:** Composer, NPM/PNPM, Artisan CLI, Git.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 📂 Repository Layout
 
-## Laravel Sponsors
+Struktur direktori mengikuti standar modern Laravel untuk kemudahan navigasi dan skalabilitas.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```text
+.
+├── app/                    # Core logic (Models, Controllers, Services)
+├── bootstrap/              # Framework bootstrapping
+├── config/                 # Application configuration
+├── database/               # Migrations, Seeders, Factories
+├── public/                 # Entry point & compiled assets
+├── resources/
+│   ├── css/                # Tailwind CSS entry points
+│   ├── js/                 # JavaScript scripts
+│   └── views/              # Blade templates (Pages & Components)
+├── routes/                 # Web & API route definitions
+├── storage/                # Logs, compiled templates, uploads
+├── tests/                  # Feature & Unit tests
+├── vite.config.js          # Vite configuration
+└── ngawi.json              # Custom project configuration
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+🚀 Getting Started
+Ikuti langkah-langkah berikut untuk menjalankan proyek di lingkungan lokal (Local Development).
 
-## Contributing
+Prerequisites
+PHP 8.2+ (Pastikan ekstensi seperti bcmath, ctype, fileinfo, json, mbstring, openssl, pdo, tokenizer, xml aktif).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Composer (Dependency manager untuk PHP).
 
-## Code of Conduct
+Node.js & NPM (atau PNPM).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+MySQL atau database kompatibel lainnya.
 
-## Security Vulnerabilities
+1. Install Dependencies
+Clone repositori dan install dependensi backend serta frontend.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Bash
 
-## License
+# Install Backend Dependencies
+composer install
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Install Frontend Dependencies
+npm install
+2. Configure Environment
+Salin file contoh konfigurasi dan sesuaikan dengan credential database lokal kamu.
+
+Bash
+
+cp .env.example .env
+Buka file .env dan atur konfigurasi database:
+
+Ini, TOML
+
+APP_NAME=PharmStock
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=manajemen_obat
+DB_USERNAME=root
+DB_PASSWORD=
+3. Generate Key & Setup Database
+Generate application key dan jalankan migrasi database (serta seeder jika tersedia).
+
+Bash
+
+# Generate App Key
+php artisan key:generate
+
+# Run Migrations & Seeders
+php artisan migrate --seed
+4. Run the Application
+Jalankan server pengembangan Laravel dan Vite secara bersamaan (kamu mungkin perlu dua terminal terpisah).
+
+Bash
+
+# Terminal 1: Menjalankan Laravel Server
+php artisan serve
+
+# Terminal 2: Menjalankan Vite (Hot Module Replacement)
+npm run dev
+Akses aplikasi melalui browser di http://localhost:8000.
+
+🧰 Useful Commands
+Berikut adalah perintah-perintah yang sering digunakan dalam pengembangan:
+
+php artisan migrate:fresh --seed – Reset database total dan isi ulang dengan data dummy.
+
+php artisan make:model NamaModel -mcr – Membuat Model, Migration, dan Controller sekaligus.
+
+npm run build – Compile aset untuk mode produksi (minified CSS/JS).
+
+php artisan test – Menjalankan suite pengujian (Unit & Feature tests).
+
+php artisan optimize:clear – Membersihkan semua cache framework.
